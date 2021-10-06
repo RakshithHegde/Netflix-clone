@@ -9,15 +9,21 @@ function Row({ title, fetchUrl }) {
     //if [], run once the row loads and dont run again
     async function fetchData() {
       const request = await axios.get(fetchUrl);
-      console.log(request.data.results);
+      setMovies(request.data.results);
       return request;
     }
     fetchData();
   }, [fetchUrl]);
-
+  console.table(movies);
   return (
-    <div>
+    <div className="row">
       <h2>{title}</h2>
+      <div className="row__posters">
+        {/*row posters */}
+        {movies.map((movie) => (
+          <img src={movie.poster_path} alt={movie.name} />
+        ))}
+      </div>
     </div>
   );
 }
