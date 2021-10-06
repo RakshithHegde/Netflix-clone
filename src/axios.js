@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//to make request to  movies db
 const instance = axios.create({
   baseURL: "https://api.themoviedb.org/3",
 });
