@@ -3,7 +3,7 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <h1>Hello RK</h1>
+      <Row title="NETFLIX ORIGINALS" />
     </div>
   );
 }
