@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "./axios";
-import "./Row.css";
+import axios from "../axios";
+import "../css/Row.css";
 
 const base_Url = "https://image.tmdb.org/t/p/original/";
 

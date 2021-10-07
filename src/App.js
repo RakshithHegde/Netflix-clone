@@ -1,11 +1,13 @@
-import "./App.css";
-import Row from "./Row";
+import "./css/App.css";
+import Row from "./components/Row";
 import request from "./request";
-import Banner from "./Banner";
+import Banner from "./components/Banner";
+import Nav from "./components/Nav";
 
 function App() {
   return (
     <div className="App">
+      <Nav />
       <Banner />
       <Row
         isLargeRow={true}
