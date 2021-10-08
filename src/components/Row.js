@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "../axios";
 import "../css/Row.css";
 import Youtube from "react-youtube";
+import movieTrailer from "movie-trailer";
 
 const base_Url = "https://image.tmdb.org/t/p/original/";
 
 function Row({ title, fetchUrl, isLargeRow }) {
   const [movies, setMovies] = useState([]);
+  const [trailerUrl, setTrailerUrl] = useState("");
 
   //A snippet that runs based on a specific conditions
   useEffect(() => {
@@ -26,6 +28,15 @@ function Row({ title, fetchUrl, isLargeRow }) {
       autoplay: 1,
     },
   };
+  const handleClick = (movie) => {
+    if (trailerUrl) {
+      setTrailerUrl("");
+    } else {
+      movieTrailer(movie?.name || "")
+        .then((url) => {})
+        .catch((error) => console.error(error));
+    }
+  };
   //console.table(movies);
   return (
     <div className="row">
@@ -35,6 +46,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
         {movies.map((movie) => (
           <img
             key={movie.id}
+            onClick={() => handleClick(movie)}
             className={`row__poster ${isLargeRow && "row__posterLarge"}`}
             src={`${base_Url}${
               isLargeRow ? movie.poster_path : movie.backdrop_path
@@ -43,7 +55,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
           />
         ))}
       </div>
-      <Youtube videoId={trailerUrl} opts={opts} />
+      {trailerUrl && <Youtube videoId={trailerUrl} opts={opts} />}
     </div>
   );
 }
