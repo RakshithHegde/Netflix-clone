@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "../axios";
 import "../css/Row.css";
+import Youtube from "react-youtube";
 
 const base_Url = "https://image.tmdb.org/t/p/original/";
 
@@ -17,6 +18,14 @@ function Row({ title, fetchUrl, isLargeRow }) {
     }
     fetchData();
   }, [fetchUrl]);
+  const opts = {
+    height: "390",
+    width: "100%",
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+    },
+  };
   //console.table(movies);
   return (
     <div className="row">
@@ -34,6 +43,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
           />
         ))}
       </div>
+      <Youtube videoId={trailerUrl} opts={opts} />
     </div>
   );
 }
